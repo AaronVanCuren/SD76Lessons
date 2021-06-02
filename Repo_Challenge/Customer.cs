@@ -10,15 +10,15 @@ namespace Repo_Challenge
     {
         public int CustomerID { get; }
         public string LastName { get; set; }
-        public int BirthDate { get; set; }
-        public int EnrollmentDate { get; set; }
+        public DateTime BirthDate { get; set; }
+        public DateTime EnrollmentDate { get; set; }
 
         public int Age
         {
             get
             {
-                TimeSpan ageSpan = DateTime.Now - BirthDate;
-                return (int)Math.Floor(ageSpan.TotalDays / 365.24);
+                TimeSpan age = DateTime.Now - BirthDate;
+                return (int)Math.Floor(age.TotalDays / 365.24);
             }
         }
 
@@ -26,18 +26,17 @@ namespace Repo_Challenge
         {
             get
             {
-                TimeSpan ageSpan = DateTime.Now - EnrollmentDate;
-                return (int)Math.Floor(ageSpan.TotalDays / 365.24);
+                TimeSpan employmentSpan = DateTime.Now - EnrollmentDate;
+                return (int)Math.Floor(employmentSpan.TotalDays / 365.24);
             }
         }
 
         public Customer(string lastName, DateTime birthDate)
         {
             Random random = new Random();
-            lastName = lastName;
-            birthDate = birthDate;
+            LastName = lastName;
+            BirthDate = birthDate;
             EnrollmentDate = DateTime.Now;
-            // In real like 
             CustomerID = random.Next(0, 999999999);
         }
 
